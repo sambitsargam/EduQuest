@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 
 // material-ui
-import { Typography, Button, Grid, Stack, Avatar, Chip, Card, CardContent, CardActions } from '@mui/material';
+import { Typography, Button, Grid, Stack, Avatar, Chip, Card, CardContent,CardHeader, CardActions } from '@mui/material';
 
 // project import
 import MainCard from 'components/MainCard';

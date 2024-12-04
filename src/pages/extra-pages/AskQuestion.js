@@ -1,35 +1,27 @@
-// material-ui
-import { Typography } from '@mui/material';
-const ethers = require('ethers');
-import './tags.css';
+// Material UI imports
+import React, { useState } from 'react';  // React should be imported at the top
+import { Typography, Avatar, AvatarGroup, Grid, Stack, Button, Autocomplete, TextField, Box, InputLabel, Input, FormHelperText, FormControl, CardContent, Alert } from '@mui/material';  // Fixed all imports from '@mui/material'
 
+// Third-party imports
+import { WithContext as ReactTags } from 'react-tag-input';  // Tag input library
+import Multiselect from 'multiselect-react-dropdown';  // Multi-select dropdown component
 
-// project import
-import MainCard from 'components/MainCard';
-import {
-    Avatar,
-    AvatarGroup,
-    Grid,
-    Stack,
-    Button,
-    Autocomplete,
-    TextField,
-    Box,
-    InputLabel,
-    Input,
-    FormHelperText
-} from '../../../node_modules/@mui/material/index';
-import Multiselect from 'multiselect-react-dropdown';
-import Utils from 'utils/utils';
-import avatar1 from 'assets/images/users/avatar-1.png';
+// Project imports
+import MainCard from 'components/MainCard';  // Project-specific component
+import Utils from 'utils/utils';  // Utility functions
+
+// Assets
+import avatar1 from 'assets/images/users/avatar-1.png';  // User avatars
 import avatar2 from 'assets/images/users/avatar-2.png';
 import avatar3 from 'assets/images/users/avatar-3.png';
 import avatar4 from 'assets/images/users/avatar-4.png';
-import { FormControl } from '../../../node_modules/@mui/material/index';
-import { CardContent } from '../../../node_modules/@mui/material/index';
-import { Alert } from '../../../node_modules/@mui/material/index';
-import React, { useState } from 'react';
-import { WithContext as ReactTags } from 'react-tag-input';
+
+// Styles
+import './tags.css';  // CSS for tags
+
+// Other dependencies
+import { ethers } from 'ethers';  // Better to use ES module import
+
 
 // ==============================|| SAMPLE PAGE ||============================== //
 

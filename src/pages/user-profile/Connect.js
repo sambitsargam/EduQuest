@@ -5,7 +5,8 @@ import axios from 'axios';
 // material-ui
 import { Typography } from '@mui/material';
 import Utils from 'utils/utils';
-
+import { ethers } from 'ethers';
+import { contractABI, contractAddress } from '../../smart-contract/abi';
 import HuddleApp from '../../huddle/huddleApp';
 
 // project import
@@ -44,12 +45,12 @@ const Connect = () => {
             const contract = new ethers.Contract(contractAddress, contractABI, provider);
     
             // Fetch user details from the contract
-            const userDetails = await contract.users(userAddress);
+
+            const userDetails = await contract.users(userId);
     
             // Extract details and set them in state
             const formattedDetails = {
-                id: userAddress,
-                userAddress,
+                id: userId,
                 name: userDetails.name,
                 pictureCID: userDetails.pictureCID,
                 rating: userDetails.rating.toString(),
