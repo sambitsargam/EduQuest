@@ -1,6 +1,5 @@
 # **EduQuest - Decentralized Q&A Platform powered by EDU Token**
 
-![EduQuest Logo](https://via.placeholder.com/150)  
 *A Decentralized Education Ecosystem for Proposals, Solutions, and Real-Time Collaboration*
 
 ## **Introduction**
