@@ -1,4 +1,4 @@
-# **EduQuest - Decentralized Q&A Platform powered by EDU Token**
+# **EduQuest - Decentralized Q&A Platform powered by EDUChain**
 
 *A Decentralized Education Ecosystem for Proposals, Solutions, and Real-Time Collaboration*
 
