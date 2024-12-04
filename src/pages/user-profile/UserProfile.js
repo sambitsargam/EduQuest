@@ -67,15 +67,17 @@ const UserProfile = (userAddress) => {
             alert('MetaMask is not installed. Please install it to use this feature.');
             return;
         }
-    
+
         try {
             // Initialize the Ethereum provider and contract instance
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+            const rpcURL = "https://open-campus-codex-sepolia.drpc.org";
+            const provider = new ethers.providers.JsonRpcProvider(rpcURL);
             const contract = new ethers.Contract(contractAddress, contractABI, provider);
-    
+
             // Fetch user details from the contract
             const userDetails = await contract.users(userAddress);
-    
+
             // Extract details and set them in state
             const formattedDetails = {
                 id: userAddress,
@@ -85,14 +87,14 @@ const UserProfile = (userAddress) => {
                 rating: userDetails.rating.toString(),
                 reputation: userDetails.reputation.toString()
             };
-    
+
             setUserDetails(formattedDetails);
         } catch (error) {
             console.error('Error fetching user details:', error);
             alert('Failed to fetch user details. Please try again.');
         }
     }
-    
+
 
     async function getUserDetails() {
         try {
@@ -109,19 +111,20 @@ const UserProfile = (userAddress) => {
             alert('MetaMask is not installed. Please install it to use this feature.');
             return;
         }
-    
+
         try {
             // Initialize the Ethereum provider and contract instance
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const rpcURL = "https://open-campus-codex-sepolia.drpc.org";
+            const provider = new ethers.providers.JsonRpcProvider(rpcURL);
             const contract = new ethers.Contract(contractAddress, contractABI, provider);
-    
+
             let userQuestions = [];
             const questionCount = "12"; // This should give the total number of questions
-            
+
             // Loop through all question IDs and fetch questions for the specific user
             for (let i = 0; i < questionCount; i++) {
                 const question = await contract.questions(i); // Fetch question by ID
-                
+
                 if (question.creator.toLowerCase() === userAddress.toLowerCase()) {
                     // If the question is created by the user, push to the userQuestions array
                     userQuestions.push({
@@ -134,7 +137,7 @@ const UserProfile = (userAddress) => {
                     });
                 }
             }
-    
+
             // Set the user's questions in state
             setUserQuestions(userQuestions);
         } catch (error) {
@@ -142,8 +145,8 @@ const UserProfile = (userAddress) => {
             alert('Failed to fetch user questions. Please try again.');
         }
     }
-    
-    
+
+
     if (!fetchState) {
         getUserDetails();
         getUserQuestions();

@@ -17,7 +17,7 @@ const MyQuestions = () => {
     const [fetchState, setFetchState] = useState(false);
     const userId = Utils.getMyAddress();
 
-    if(!Utils.getMyAddress()) {
+    if (!Utils.getMyAddress()) {
         return (
             <MainCard sx={{ mt: 0 }}>
                 <CardContent>
@@ -34,20 +34,22 @@ const MyQuestions = () => {
             alert('MetaMask is not installed. Please install it to use this feature.');
             return;
         }
-    
+
         try {
             // Initialize the Ethereum provider and contract instance
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+            const rpcURL = "https://open-campus-codex-sepolia.drpc.org";
+            const provider = new ethers.providers.JsonRpcProvider(rpcURL);
             const contract = new ethers.Contract(contractAddress, contractABI, provider);
             const userId = Utils.getMyAddress();
-    
+
             let userQuestions = [];
             const questionCount = "12"; // This should give the total number of questions
-            
+
             // Loop through all question IDs and fetch questions for the specific user
             for (let i = 0; i < questionCount; i++) {
                 const question = await contract.questions(i); // Fetch question by ID
-                
+
                 if (question.creator.toLowerCase() === userId.toLowerCase()) {
                     // If the question is created by the user, push to the userQuestions array
                     userQuestions.push({
@@ -60,7 +62,7 @@ const MyQuestions = () => {
                     });
                 }
             }
-    
+
             // Set the user's questions in state
             setMyQuestions(userQuestions);
         } catch (error) {

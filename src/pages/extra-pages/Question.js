@@ -44,7 +44,8 @@ const Question = () => {
     // Fetching question and proposals from the smart contract
     const fetchQuestion = async () => {
         try {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const rpcURL = "https://open-campus-codex-sepolia.drpc.org";
+            const provider = new ethers.providers.JsonRpcProvider(rpcURL);
             const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
             // Fetch question by ID

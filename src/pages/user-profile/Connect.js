@@ -18,7 +18,8 @@ import {
     Button,
     Card,
     CardContent,
-    CardHeader} from '../../../node_modules/@mui/material/index';
+    CardHeader
+} from '../../../node_modules/@mui/material/index';
 
 import Chat from '../extra-pages/chat/chat';
 import LivePeerApp from 'livepeer/LivePeerApp';
@@ -38,16 +39,18 @@ const Connect = () => {
             alert('MetaMask is not installed. Please install it to use this feature.');
             return;
         }
-    
+
         try {
             // Initialize the Ethereum provider and contract instance
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+            const rpcURL = "https://open-campus-codex-sepolia.drpc.org";
+            const provider = new ethers.providers.JsonRpcProvider(rpcURL);
             const contract = new ethers.Contract(contractAddress, contractABI, provider);
-    
+
             // Fetch user details from the contract
 
             const userDetails = await contract.users(userId);
-    
+
             // Extract details and set them in state
             const formattedDetails = {
                 id: userId,
@@ -56,7 +59,7 @@ const Connect = () => {
                 rating: userDetails.rating.toString(),
                 reputation: userDetails.reputation.toString()
             };
-    
+
             setUserDetails(formattedDetails);
         } catch (error) {
             console.error('Error fetching user details:', error);
@@ -133,7 +136,7 @@ const Connect = () => {
                             </Button>
                         )
                     }
-                    title={"Connected to "+userDetails.name}
+                    title={"Connected to " + userDetails.name}
                     subheader="Active 2 minutes ago."
                 />
                 <CardContent>{livePeer ? getLivePeer() : getHuddle()}</CardContent>
@@ -169,7 +172,7 @@ const Connect = () => {
                     )}
                 </Stack>
             </MainCard>
-            { userDetails ? showVideoCall() : <></> }
+            {userDetails ? showVideoCall() : <></>}
         </>
     );
 };
